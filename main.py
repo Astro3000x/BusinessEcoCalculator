@@ -98,9 +98,6 @@ industrial_machine_power = {
   "Industrial Lathes": 11000,                    # 11 kW
   "Electroplating Equipment": 16500              # 16.5 kW
 }
-
-
-
 power_sources_with_emissions = {
   "natural gas": 450,  # grams CO2 per 1000 watts
   "hydropower": 1,      # grams CO2 per 1000 watts
@@ -188,5 +185,8 @@ totalemissions = 0
 for m in machines:
   print(f"Carbon Emissions per hour of {m}: {industrial_machine_power[m] * emissions}g")
   totalemissions += industrial_machine_power[m] * emissions
-print(f"Total Emissions: {totalemissions}")
+print(f"Total Emissions per hour: {totalemissions/1000}kg")
+trees = totalemissions/1000 * 24 * 365/10
+print(f"Total Trees Needed To Offset Emissions in One Year: {trees}")
 print("-----------------")
+#https://stackoverflow.com/questions/45953770/creating-and-writing-to-a-pdf-file-in-python
