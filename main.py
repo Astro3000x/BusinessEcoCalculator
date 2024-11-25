@@ -149,6 +149,7 @@ while source == False:
   state = input("Enter your state/province to get started. (E.g.: California, Ontario)\n")
   if location.lower() == "ca":
     print("-----------------")
+    state = state.lower()
     try:
       print("Your power source(s) are:",power_sources["canadian provinces"][state])
       
