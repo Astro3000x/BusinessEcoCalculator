@@ -1,1 +1,6 @@
-a,ontario,Nuclear
+a Emissions Report:
+ Location:british columbia
+Power Source:Hydropower
+Total Emissions Per Hour: 5.0kg
+
+Made with Business Emissions Calculator
