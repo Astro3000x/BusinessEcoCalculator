@@ -1,1 +1,1 @@
-a,british columbia,Hydropower
+a,ontario,Nuclear

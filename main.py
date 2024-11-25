@@ -98,6 +98,9 @@ industrial_machine_power = {
   "Industrial Lathes": 11000,                    # 11 kW
   "Electroplating Equipment": 16500              # 16.5 kW
 }
+
+
+
 power_sources_with_emissions = {
   "natural gas": 450,  # grams CO2 per 1000 watts
   "hydropower": 1,      # grams CO2 per 1000 watts
@@ -117,7 +120,7 @@ power_sources_with_emissions = {
 
 #Main Code
 
-print("Business Eco Meter")
+print("Business Emissions Calculator")
 print("For all text inputs please no special characters or spaces.")
 print("-----------------")
 
@@ -166,8 +169,7 @@ while source == False:
     print("-----------------")
     print("You did not enter a valid country location, please try again.")
 
-writedata = open(f"{busname}data.txt","a")
-writedata.write(f"{busname},{state},{power_source}")
+
 
 print(f"Carbon Emissions per 1000 watts: {power_sources_with_emissions[power_source.lower()]}g")
 emissions = power_sources_with_emissions[power_source.lower()]
@@ -176,7 +178,7 @@ machines = input(f"Enter the name of the machine(s) you are using, splitting eac
 
 if machines.lower() == "list":
     print(industrial_machine_power.keys(),"\n")
-    machines = input(f"Enter the name of the machine(s) you are using, splitting each with a comma (,). (E.g.: Electric Motors)\n")
+    machines = input(f"Enter the name of the machine(s) you are using (case sensitive), splitting each with a comma (,). (E.g.: Electric Motors)\n")
 else:
   pass
 print("-----------------")
@@ -185,8 +187,15 @@ totalemissions = 0
 for m in machines:
   print(f"Carbon Emissions per hour of {m}: {industrial_machine_power[m] * emissions}g")
   totalemissions += industrial_machine_power[m] * emissions
+print(f"Total Emissions: {totalemissions}")
+print("-----------------")
 print(f"Total Emissions per hour: {totalemissions/1000}kg")
 trees = totalemissions/1000 * 24 * 365/10
 print(f"Total Trees Needed To Offset Emissions in One Year: {trees}")
 print("-----------------")
-#https://stackoverflow.com/questions/45953770/creating-and-writing-to-a-pdf-file-in-python
+savedata = input("Would you like to save your data? (y/n)\n")
+if savedata.lower() == "y":
+  writedata = open(f"{busname}data.txt","a")
+  writedata.write(f"{busname} Emissions Report:\n Location:{state}\nPower Source:{power_source}\nTotal Emissions Per Hour: {totalemissions/1000}kg\n\nMade with Business Emissions Calculator")
+
+print(f"Thank you for using Business Eco Meter, {busname}")
